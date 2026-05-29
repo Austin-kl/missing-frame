@@ -2,24 +2,14 @@
   "name": "missing-frame",
   "version": "1.0.0",
   "private": true,
-  "workspaces": [
-    "backend",
-    "frontend",
-    "packages/*"
-  ],
   "scripts": {
-    "dev:backend": "cd backend && npm run start:dev",
-    "dev:frontend": "cd frontend && npm run dev",
-    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
-    "build:backend": "cd backend && npm run build",
-    "build:frontend": "cd frontend && npm run build",
-    "db:up": "docker-compose up -d postgres",
-    "db:down": "docker-compose down",
-    "db:migrate": "cd backend && npx prisma migrate dev",
-    "db:seed": "cd backend && npm run seed",
-    "db:studio": "cd backend && npx prisma studio"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.2"
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:reset": "docker-compose down -v && docker-compose up -d",
+    "db:push": "npm run --prefix backend db:push",
+    "db:seed": "npm run --prefix backend db:seed",
+    "db:generate": "npm run --prefix backend db:generate",
+    "dev:backend": "npm run --prefix backend start:dev",
+    "dev:frontend": "npm run --prefix frontend dev"
   }
 }
